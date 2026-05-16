@@ -1,2 +1,3 @@
-# LocalLLM
-# PocketLLM  A mobile-friendly web app that connects your phone to your locally-running AI (Ollama, llama.cpp, LM Studio, etc.). Works over Tailscale. Change backends without changing the UI.
+# PocketLLM
+
+A mobile-friendly web interface that connects to your local LLM — accessible from anywhere, on any device.
