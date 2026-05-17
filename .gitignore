@@ -3,3 +3,4 @@
 .env 
 config.local.js 
 *.log 
+node_modules/

@@ -4,14 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=north" />
     <title>Chat</title>
 </head>
 <body>
+    <div class="history"></div>
+    <div class="main-content">
+     <div id="message"></div>
     <div class="chat">
     <input placeholder="Enter Prompt" id="prompt" required/>
-    <button type="submit" id="send">send</button>
+    <button type="submit" id="send">
+        <span class="material-symbols-outlined">
+north
+</span>
+    </button>
 </div>
-    <div id="message"></div>
+</div>
+    <video autoplay loop muted playsinline id="bgVideo">
+<source src="Videos/bg.mp4" type="video/mp4">
+    </video>
     <script src="script.js"></script>
 </body>
 </html>
