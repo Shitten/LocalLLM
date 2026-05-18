@@ -1,3 +1,9 @@
+ * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html, body {
   height: 100%;       
   margin: 0;          
@@ -83,6 +89,7 @@ border: 2px solid red;  /* See if this appears */
   border-radius: 18px;
   margin-bottom: 8px;
   max-width: 70%;
+  color: white;
  
 }
  
@@ -100,6 +107,29 @@ border: 2px solid red;  /* See if this appears */
     margin-top: 80px;
     width: 60%;
     max-height: 75vh;
+  }
+}
+
+@media (max-width: 480px) {
+body {
+  padding: 8px;  
+  overflow-x: hidden;
+  overflow-y: hidden;  
+}
+.main-content {
+  display: flex;
+   margin-left: 100px;
+  flex-direction: column;
+  min-height: 100vh;  
+  overflow: hidden;
+}
+  #chat {
+margin-top: auto;
+ padding: 8px 12px;  
+    font-size: 14px;
+  }
+  .history {
+    max-width: 100px;
   }
 }
 
