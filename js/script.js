@@ -1,8 +1,15 @@
 const promptText = document.getElementById("prompt");
 const send = document.getElementById("send")
  const message = document.getElementById("message");
+ const history = document.querySelector('.history');
+ const toggle = document.getElementById("toggle");
 
 
+
+toggle.addEventListener('click',()=>{
+history.classList.toggle('show');
+
+})
 
 send.addEventListener('click', (e)=>{
 e.preventDefault();

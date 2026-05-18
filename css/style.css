@@ -36,8 +36,34 @@ html, body {
   width: 190px;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.1);
+   backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   z-index: 10;
-  transition: transform 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  
+}
+.history.show{
+  opacity: 1;
+  visibility: visible;
+}
+
+#toggle{
+  position: fixed;
+  left: 0;
+  top: 20px;
+  bottom: 20px;
+  width:30px;
+  height: 30px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: solid 2px red;
+  border-radius: 50px;
+  z-index: 11;
+} 
+#toggle:hover{
+  background-color: rgba(255, 255, 255, 0.468);
+  cursor: pointer;
 }
 
 
