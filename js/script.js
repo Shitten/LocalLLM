@@ -32,8 +32,9 @@ body: JSON.stringify({
     let completeMessage = '';
     
     const generateMessage = document.createElement('div');
+    generateMessage.className = 'messageDiv'
     message.appendChild(generateMessage);
-
+    
     while (true) {
         const { done, value } = await reader.read();
         if (done) break;
