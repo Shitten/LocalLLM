@@ -28,6 +28,11 @@ body: JSON.stringify({
     })
     const reader = response.body.getReader();
     const decoder = new TextDecoder();
+    
+    let completeMessage = '';
+    
+    const generateMessage = document.createElement('div');
+    message.appendChild(generateMessage);
 
     while (true) {
         const { done, value } = await reader.read();
@@ -44,19 +49,21 @@ body: JSON.stringify({
         
         console.log(chunk);
         if(parsing.type ===  "message.delta" && parsing.content){
-        message.textContent += parsing.content;
+        completeMessage += parsing.content;
+        generateMessage.textContent = completeMessage;
+        message.scrollTop = message.scrollHeight;
         };
         
         
             };
         };
         
-
+        
         
     };
 
 
 
-
+generateMessage.innerHTML = marked.parse(completeMessage); 
 })()
 });
