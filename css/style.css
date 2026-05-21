@@ -82,16 +82,22 @@ html, body {
 flex: 1;
   flex-direction: column;
   margin: 80px auto 8px;
+   font-size: clamp(12px, 4vw, 16px);
+   word-wrap: break-word;      
+  overflow-wrap: break-word;  
+  white-space: normal;  
+   align-items: flex-start;
   height: auto;
   min-height: 60%;
   max-height: 75vh;
+  overflow-x: hidden;
   overflow-y: auto;
   width: 70%;
   max-width: 1000px;
   padding: 12px 16px;
   border-radius: 18px;
   color: white;
-  scrollbar-width: none;  /* Firefox */
+  scrollbar-width: none;  
   -ms-overflow-style: none;
 }
 .messageDiv::-webkit-scrollbar {
@@ -99,17 +105,57 @@ flex: 1;
 }
 .messageDiv{
   margin-top: 10px;
-  padding: 10px;
-  width: 90%;
+  padding: 14px 20px; 
+  min-width: 0;          
+  max-width: 80%; 
+ width: fit-content; 
+  font-size: 12px;
+  font-family: monospace;
   height: auto; 
+  min-height: auto;
   border: solid 1px red;
    border-radius: 20px;
   background: rgba(255, 255, 255, 0.1);
    backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   overflow: visible;
-   
+  box-sizing: border-box; 
+  word-break: break-word; 
+  overflow-wrap: break-word;
+  white-space: pre-wrap; 
+  overflow: hidden;     
+  min-width: 0;           
+ 
 }
+
+.messageDiv pre {
+  overflow-x: auto;      
+  white-space: pre;       
+  word-break: normal;    
+  max-width: 100%;        
+  box-sizing: border-box;
+  padding: 10px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.2) transparent;
+}
+
+.messageDiv p,
+.messageDiv li,
+.messageDiv h1,
+.messageDiv h2,
+.messageDiv h3 {
+  padding: 0 4px;        
+  margin-bottom: 6px;    
+}
+
+.messageDiv ul,
+.messageDiv ol {
+  padding-left: 20px;    
+  margin-bottom: 6px;
+}
+
 
 .chat {
   display: flex;
@@ -122,10 +168,16 @@ flex: 1;
 
 
 #prompt {
+    font-size: 12px;
+  font-family: monospace;
+  flex: 1;
+  min-width: 0;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 50px;
   width: 50vw;
   max-width: 80%;
+    word-break: break-word;
+    overflow-wrap: break-word;
   height: 2.5em;
   backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -179,6 +231,8 @@ flex: 1;
 }
 
 
+
+
 @media (max-width: 480px) {
   body {
     padding: 8px;
@@ -200,6 +254,7 @@ flex: 1;
     margin-top: 70px;
     width: 95%;
     max-height: 70vh;
+    padding: 8px;
   }
 
   .chat {
