@@ -3,13 +3,18 @@ const send = document.getElementById("send");
 const message = document.getElementById("message");
 const history = document.querySelector('.history');
 const toggle = document.getElementById("toggle");
-
+const stopBtn = document.getElementById("stopBtn");
 toggle.addEventListener('click', () => {
   history.classList.toggle('show');
 });
 
+stopBtn.style.display = "none";
+
 send.addEventListener('click', (e) => {
   e.preventDefault();
+ send.style.display = "none";
+ stopBtn.style.display = "block";
+ const controller = new AbortController();
   (async () => {
     const response = await fetch('/api/chat', {
       method: 'POST',
@@ -19,8 +24,16 @@ send.addEventListener('click', (e) => {
       body: JSON.stringify({
         input: promptText.value,
         stream: true,
-      })
+        
+      }),
+      signal: controller.signal
+      
     });
+
+     
+
+promptText.value = '';
+   
 
     const reader = response.body.getReader();
     const decoder = new TextDecoder();
@@ -68,6 +81,7 @@ send.addEventListener('click', (e) => {
     while (true) {
       const { done, value } = await reader.read();
       if (done) break;
+     
 
       buffer += decoder.decode(value, { stream: true });
       const lines = buffer.split('\n');
@@ -76,13 +90,21 @@ send.addEventListener('click', (e) => {
       for (const line of lines) {
         if (!line.trim()) continue;
         if (!line.startsWith('data: ')) continue;
-
         const jsonStr = line.slice(6);
         if (jsonStr === '[DONE]') {
+         
           buffer = '';
+          
           break;
+           
         }
-
+  
+stopBtn.onclick= ()=> {
+    controller.abort();
+      send.style.display = "block";
+ stopBtn.style.display = "none";
+ 
+};
         try {
           const parsing = JSON.parse(jsonStr);
           const content = getStreamContent(parsing);
@@ -94,6 +116,7 @@ send.addEventListener('click', (e) => {
           if (parsing?.choices?.[0]?.finish_reason === 'stop') {
             buffer = '';
             break;
+            
           }
         } catch (err) {
           console.error('Bad JSON chunk:', jsonStr, err);
@@ -115,5 +138,7 @@ send.addEventListener('click', (e) => {
         console.warn('Leftover buffer could not be parsed', buffer, err);
       }
     }
+    send.style.display = "block";
+stopBtn.style.display = "none";
   })();
 });

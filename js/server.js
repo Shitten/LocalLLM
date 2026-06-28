@@ -3,6 +3,8 @@ const express = require('express');
 const app = express();
 app.use(express.json());
 app.use(express.static("."));
+const cors = require("cors");
+app.use(cors());
 const { Readable } = require("stream");
 app.post('/api/chat', async (req,res)=>{
      res.setHeader('Content-Type', 'text/event-stream');
