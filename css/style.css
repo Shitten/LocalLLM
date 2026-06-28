@@ -110,7 +110,7 @@ flex: 1;
   max-width: 80%; 
  width: fit-content; 
   font-size: 12px;
-  font-family: monospace;
+  font-family: "Segoe UI", "Noto Sans", Arial, sans-serif;
   height: auto; 
   min-height: auto;
   border: solid 1px red;
