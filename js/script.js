@@ -1,12 +1,20 @@
 const promptText = document.getElementById("prompt");
 const send = document.getElementById("send");
-const message = document.getElementById("message");
+const message = document.getElementById('message');
 const history = document.querySelector('.history');
 const toggle = document.getElementById("toggle");
 const stopBtn = document.getElementById("stopBtn");
+ const save = localStorage.getItem('messageStore');
 toggle.addEventListener('click', () => {
   history.classList.toggle('show');
 });
+
+if (save) {
+        const saveDiv = document.createElement("div");
+  saveDiv.className = "savedMessage";
+  saveDiv.textContent = save;   
+  message.prepend(saveDiv);
+    }
 
 stopBtn.style.display = "none";
 
@@ -78,10 +86,13 @@ promptText.value = '';
     generateMessage.className = 'messageDiv';
     message.appendChild(generateMessage);
 
+
+    
+
     while (true) {
       const { done, value } = await reader.read();
       if (done) break;
-     
+     localStorage.setItem('messageStore', completeMessage);
 
       buffer += decoder.decode(value, { stream: true });
       const lines = buffer.split('\n');
@@ -112,6 +123,7 @@ stopBtn.onclick= ()=> {
             completeMessage += content;
             renderMessage(completeMessage);
             message.scrollTop = message.scrollHeight;
+            localStorage.setItem('messageStore', completeMessage);
           }
           if (parsing?.choices?.[0]?.finish_reason === 'stop') {
             buffer = '';
@@ -133,6 +145,7 @@ stopBtn.onclick= ()=> {
           completeMessage += content;
           renderMessage(completeMessage);
           message.scrollTop = message.scrollHeight;
+          localStorage.setItem('messageStore', completeMessage);
         }
       } catch (err) {
         console.warn('Leftover buffer could not be parsed', buffer, err);

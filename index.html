@@ -10,22 +10,22 @@
 </head>
 <body>
     <div class="history"></div>
-    <input id="toggle" type="button" />
-    <div class="main-content">
-     <div id="message"></div>
-    <div class="chat">
+    <button id="toggle" type="button"><span class="material-symbols-outlined menubtn">
+menu
+</span></button>
+   <div class="main-content">
+  <div id="message">
+    <div class="message-scroll"></div>
+  </div>
+  <div class="chat">
     <input placeholder="Enter Prompt" id="prompt" required autocomplete="off"/>
     <button type="submit" id="send">
-        <span class="material-symbols-outlined">
-north
-</span>
+      <span class="material-symbols-outlined">arrow_upward_alt</span>
     </button>
     <button type="button" id="stopBtn">
-        <span class="material-symbols-outlined">
-stop
-</span>
-</button>
-</div>
+      <span class="material-symbols-outlined">stop</span>
+    </button>
+  </div>
 </div>
     <video autoplay loop muted playsinline id="bgVideo">
 <source src="assets/Videos/bg.mp4" type="video/mp4">
